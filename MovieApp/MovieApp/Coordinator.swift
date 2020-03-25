@@ -18,7 +18,7 @@ class Coordinator {
     }
     
     func start() {
-        let viewController = ViewController.instantiate()
+        let viewController = ViewController.instantiate(coordinator: self, viewModel: MoviesListViewModel())
         navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

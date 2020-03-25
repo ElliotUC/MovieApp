@@ -27,10 +27,14 @@ class DetailMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         movieImage.image = viewModel.displayImage
         titleMovie.text = viewModel.displayTitle
         overviewMovie.text = viewModel.displayOverview
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
 }

@@ -18,5 +18,3 @@ class MovieService: MovieServiceProtocol {
         APIClient().send(apiRequest: MovieRequest())
     }
 }
-
-

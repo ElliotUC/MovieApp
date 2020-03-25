@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MovieListViewController.swift
 //  MovieApp
 //
 //  Created by Elliot on 3/25/20.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController {
+class MovieListViewController: UIViewController {
     
       private let disposeBag = DisposeBag()
       private var viewModel: MoviesListViewModel!
@@ -18,9 +18,9 @@ class ViewController: UIViewController {
       
       @IBOutlet weak var tableView: UITableView!
       
-      static func instantiate(coordinator: Coordinator, viewModel: MoviesListViewModel) -> ViewController {
+      static func instantiate(coordinator: Coordinator, viewModel: MoviesListViewModel) -> MovieListViewController {
           let storyboard = UIStoryboard(name: "Main", bundle: .main)
-          let viewController = storyboard.instantiateInitialViewController() as! ViewController
+          let viewController = storyboard.instantiateInitialViewController() as! MovieListViewController
           viewController.coordinator = coordinator
           viewController.viewModel = viewModel
           return viewController
@@ -28,8 +28,6 @@ class ViewController: UIViewController {
 
       override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = viewModel.title
    
         viewModel.fetchMovies().observeOn(MainScheduler.instance)
@@ -41,5 +39,10 @@ class ViewController: UIViewController {
             self.coordinator.showMovieDetail(movieViewModel: movieViewModel)
         }).disposed(by: disposeBag)
       }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 

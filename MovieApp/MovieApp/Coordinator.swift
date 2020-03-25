@@ -23,4 +23,9 @@ class Coordinator {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
+    
+    func showMovieDetail(movieViewModel: MovieViewModel) {
+        let viewController = DetailMovieViewController.instantiate(coordinator: self, viewModel: movieViewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

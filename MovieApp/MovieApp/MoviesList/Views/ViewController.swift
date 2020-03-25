@@ -27,15 +27,19 @@ class ViewController: UIViewController {
       }
 
       override func viewDidLoad() {
-          super.viewDidLoad()
-          
-          navigationController?.navigationBar.prefersLargeTitles = true
-          navigationItem.title = viewModel.title
+        super.viewDidLoad()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = viewModel.title
    
-          viewModel.fetchMovies().observeOn(MainScheduler.instance)
-              .bind(to: tableView.rx.items(cellIdentifier: "cell")) {index, viewModel, cell in
-                  cell.textLabel?.text = viewModel.displayTitle
-          }.disposed(by: disposeBag)  
+        viewModel.fetchMovies().observeOn(MainScheduler.instance)
+            .bind(to: tableView.rx.items(cellIdentifier: "cell")) {index, viewModel, cell in
+            cell.textLabel?.text = viewModel.displayTitle
+        }.disposed(by: disposeBag)
+          
+        tableView.rx.modelSelected(MovieViewModel.self).subscribe(onNext: { (movieViewModel) in
+            self.coordinator.showMovieDetail(movieViewModel: movieViewModel)
+        }).disposed(by: disposeBag)
       }
 }
 

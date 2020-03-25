@@ -21,6 +21,5 @@ final class MoviesListViewModel {
     func fetchMovies() -> Observable<[MovieViewModel]> {
         movieService.fetchMovies().map { $0.results.map { MovieViewModel(movie: $0)} }
     }
-    
 }
 

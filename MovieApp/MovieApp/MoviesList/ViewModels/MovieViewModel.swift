@@ -25,9 +25,9 @@ struct MovieViewModel {
        
     var displayImage: UIImage {
         let url = URL(string: "\(baseURL)\(movie.posterPath)")!
-        let imageData = try? Data(contentsOf: url)
+        guard let imageData = try? Data(contentsOf: url) else { return UIImage() }
         
-        return UIImage(data: imageData!)!
+        return UIImage(data: imageData)!
     }
     
     init(movie: Movie) {

@@ -11,7 +11,7 @@ import UIKit
 class Coordinator {
     
     private let window: UIWindow
-    private var navigationController: UINavigationController!
+    var navigationController: UINavigationController!
     
     init(window: UIWindow) {
         self.window = window
@@ -19,13 +19,17 @@ class Coordinator {
     
     func start() {
         let viewController = MovieListViewController.instantiate(coordinator: self, viewModel: MoviesListViewModel())
-        navigationController = UINavigationController(rootViewController: viewController)
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
+        createNavigationController(viewController)        
     }
     
     func showMovieDetail(movieViewModel: MovieViewModel) {
         let viewController = DetailMovieViewController.instantiate(coordinator: self, viewModel: movieViewModel)
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func createNavigationController(_ controller: UIViewController)  {
+        navigationController = UINavigationController(rootViewController: controller)
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
 }

@@ -20,7 +20,7 @@ struct MovieViewModel {
     }
        
     var displayOverview: String {
-        return movie.overview.capitalized
+        return movie.overview
     }
        
     var displayImage: UIImage {

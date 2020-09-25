@@ -1,5 +1,5 @@
 # MovieApp
-> Prueba técnica para transbank. Aplicación creada bajo la arquitectura `MVVM+RxSwift`
+> Aplicación creada bajo la arquitectura `MVVM+RxSwift`
 
 [![Swift Version][swift-image]][swift-url]
 
